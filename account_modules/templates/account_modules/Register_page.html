@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}
+	ثبت نام
+{% endblock %}
+
+{% block page_content %}
+    <div class="container py-4 py-lg-5 my-4">
+        <div class="row">
+            <center>
+          <div class="col-md-6">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <h2 class="h4 mb-1">ثبت نام</h2>
+
+                <hr>
+                <h3 class="fs-base pt-4 pb-2">برای ثبت نام اطلاعات زیر را تکمیل نمائید</h3>
+                <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                  <div class="input-group mb-3">
+                        {{ register_form.email }}
+                        {{ register_form.email.errors }}
+                  </div>
+                  <div class="input-group mb-3">
+                        {{ register_form.password }}
+                        {{ register_form.password.errors }}
+                  </div>
+                    <div class="input-group mb-3">
+                        {{ register_form.confirm_password }}
+                        {{ register_form.confirm_password.errors }}
+                  </div>
+                  <div class="d-flex flex-wrap justify-content-between">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" checked id="remember_me">
+                      <label class="form-check-label" for="remember_me">به خاطر سپردن</label>
+                    </div><a class="nav-link-inline fs-sm" href="account-password-recovery.html">فراموشی رمز ؟ </a>
+                  </div>
+                  <hr class="mt-4">
+                  <div class="text-end pt-4">
+                    <button class="btn btn-primary" type="submit"><i class="ci-sign-in me-2 ms-n21"></i>ثبت نام</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+{#          <div class="col-md-6 pt-4 mt-3 mt-md-0">#}
+{#            <h2 class="h4 mb-3">هیچ حسابی ندارید؟ ثبت نام</h2>#}
+{#             <p class="fs-sm text-muted mb-4">ثبت نام کمتر از یک دقیقه طول می کشد اما به شما امکان کنترل کامل سفارشات را می دهد.</p>#}
+{#            <form class="needs-validation" novalidate>#}
+{#              <div class="row gx-4 gy-3">#}
+{#                <div class="col-sm-6">#}
+{#                  <label class="form-label" for="reg-fn">نام کوچک</label>#}
+{#                  <input class="form-control" type="text" required id="reg-fn">#}
+{#                  <div class="invalid-feedback">نام کوچک را وارد کنید</div>#}
+{#                </div>#}
+{#                <div class="col-sm-6">#}
+{#                  <label class="form-label" for="reg-ln">نام خانوادگی</label>#}
+{#                  <input class="form-control" type="text" required id="reg-ln">#}
+{#                  <div class="invalid-feedback">نام خانوادگی را وارد کنید</div>#}
+{#                </div>#}
+{#                <div class="col-sm-6">#}
+{#                  <label class="form-label" for="reg-email">آدرس ایمیل</label>#}
+{#                  <input class="form-control" type="email" required id="reg-email">#}
+{#                  <div class="invalid-feedback">آدرس ایمیل را وارد کنید</div>#}
+{#                </div>#}
+{#                <div class="col-sm-6">#}
+{#                  <label class="form-label" for="reg-phone">شماره تلفن</label>#}
+{#                  <input class="form-control" type="text" required id="reg-phone">#}
+{#                  <div class="invalid-feedback">شماره تلفن را وارد کنید</div>#}
+{#                </div>#}
+{#                <div class="col-sm-6">#}
+{#                  <label class="form-label" for="reg-password">پسورد</label>#}
+{#                  <input class="form-control" type="password" required id="reg-password">#}
+{#                  <div class="invalid-feedback">لطفا رمز عبور را وارد کنید!</div>#}
+{#                </div>#}
+{#                <div class="col-sm-6">#}
+{#                  <label class="form-label" for="reg-password-confirm">تکرار پسورد</label>#}
+{#                  <input class="form-control" type="password" required id="reg-password-confirm">#}
+{#                  <div class="invalid-feedback">رمزهای ورود مطابقت ندارند!</div>#}
+{#                </div>#}
+{#                <div class="col-12 text-end">#}
+{#                  <button class="btn btn-primary" type="submit"><i class="ci-user me-2 ms-n1"></i>ثبت نام</button>#}
+{#                </div>#}
+{#              </div>#}
+{#            </form>#}
+{#          </div>#}
+            </div>
+        </center>
+      </div>
+{% endblock %}
