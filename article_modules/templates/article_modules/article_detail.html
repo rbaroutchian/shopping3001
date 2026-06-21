@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}
+
+{% endblock %}
+
+{% block page_content %}
+	      <div class="bg-secondary py-4">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+          <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb flex-lg-nowrap justify-content-center justify-content-lg-start">
+                <li class="breadcrumb-item"><a class="text-nowrap" href="index-2.html"><i class="ci-home"></i>خانه</a></li>
+                <li class="breadcrumb-item text-nowrap"><a href="#">وبلاگ</a>
+                </li>
+                <li class="breadcrumb-item text-nowrap active" aria-current="page">تک پست</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 mb-0"> {{ article.title}}</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container pb-5">
+        <div class="row justify-content-center pt-5 mt-md-2">
+          <div class="col-lg-9">
+            <!-- Post meta-->
+            <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mt-n1">
+              <div class="d-flex align-items-center fs-sm mb-2"><a class="blog-entry-meta-link" href="#">
+                  <div class="blog-entry-author-ava">
+                      <img src="{{ article.image.url }}" alt="رافائل مارکز"></div>رافائل مارکز</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">11 مهر</a></div>
+              <div class="fs-sm mb-2"><a class="blog-entry-meta-link text-nowrap" href="#comments" data-scroll><i class="ci-message"></i>3</a></div>
+            </div>
+            <!-- Gallery-->
+            <div class="gallery row pb-2">
+              <div class="col-sm-8"><a class="gallery-item rounded-3 mb-grid-gutter" href="img/blog/single/01.jpg" data-bs-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;زیرنویس تصویر گالری #1&lt;/h6&gt;">
+                  <img src="{{ article.image.url }}" alt="Gallery image"><span class="gallery-item-caption">زیرنویس تصویر گالری #1</span></a></div>
+              <div class="col-sm-4"><a class="gallery-item rounded-3 mb-grid-gutter" href="img/blog/single/02.jpg" data-bs-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;زیرنویس تصویر گالری #2&lt;/h6&gt;">
+                  <img src="{{ article.image.url }}" alt="Gallery image"><span class="gallery-item-caption">زیرنویس تصویر گالری #2</span></a><a class="gallery-item rounded-3 mb-grid-gutter" href="img/blog/single/03.jpg" data-bs-sub-html="&lt;h6 class=&quot;fs-sm text-light&quot;&gt;زیرنویس تصویر گالری #3&lt;/h6&gt;">
+                  <img src="{{ article.image.url }}" alt="Gallery image"><span class="gallery-item-caption">زیرنویس تصویر گالری #3</span></a></div>
+            </div>
+            <!-- Post content-->
+              <h2> {{ article.title }}</h2>
+            <p>{{ article.short_description }}</p>
+            <p>{{ article.text }}</p>
+
+            <!-- Post navigation-->
+            <nav class="entry-navigation" aria-label="Post navigation"><a class="entry-navigation-link" href="#" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex align-items-center&quot;&gt;&lt;img src=img/blog/navigation/01.jpg width=&quot;60&quot; class=&quot;rounded&quot; alt=&quot;Post thumb&quot;&gt;&lt;div class=&quot;ps-3&quot;&gt;&lt;h6 class=&quot;fs-sm fw-semibold mb-0&quot;&gt;خبر قبلی مربوط به&lt;/h6&gt;&lt;span class=&quot;d-block fs-xs text-muted&quot;&gt;توسط ستین کارتزیلا&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;"><i class="ci-arrow-left me-2"></i><span class="d-none d-sm-inline">پست قبلی</span></a><a class="entry-navigation-link" href="blog-list.html"><i class="ci-view-list me-2"></i><span class="d-none d-sm-inline">همه پست ها</span></a><a class="entry-navigation-link" href="#" data-bs-toggle="popover" data-bs-placement="top" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex align-items-center&quot;&gt;&lt;img src=img/blog/navigation/02.jpg width=&quot;60&quot; class=&quot;rounded&quot; alt=&quot;Post thumb&quot;&gt;&lt;div class=&quot;ps-3&quot;&gt;&lt;h6  class=&quot;fs-sm fw-semibold mb-0&quot;&gt;خبر بعدی در مورد ما&lt;/h6&gt;&lt;span class=&quot;d-block fs-xs text-muted&quot;&gt;توسط ستین&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;"><span class="d-none d-sm-inline">پست بعدی</span><i class="ci-arrow-right ms-2"></i></a></nav>
+            <!-- Comments-->
+            <div class="pt-2 mt-5" id="comments">
+              <h2 class="h4">نظرات<span class="badge bg-secondary fs-sm text-body align-middle ms-2">{{ comments_count }}</span></h2>
+
+                {% include 'article_modules/include/article_comment_partial.html' %}
+
+              <!-- ارسال نظر form-->
+              <div class="card border-0 shadow mt-2 mb-4">
+                  {% if request.user.is_authenticated %}
+                <div class="card-body">
+
+                  <div class="d-flex align-items-start"><img class="rounded-circle" src="img/testimonials/01.jpg" width="50" alt="مایکل دیویس">
+                    <form method="post" class="w-100 needs-validation ms-3" novalidate>
+                        {% csrf_token %}
+                      <div class="mb-3">
+                        <textarea class="form-control"  id="commentText" rows="4" placeholder="نظر بنویسید ..." required></textarea>
+                        <div class="invalid-feedback">نظر بنویسید ...</div>
+
+                          <input type="hidden" id="parentId" value="">
+
+{#                          {{ comment_form.as_p }}#}
+                      </div>
+{#                        {% if request.user.is_authenticated %}#}
+                            <button class="btn btn-primary btn-sm" type="button" onclick="sendArticleComment({{ article.id }})">ارسال نظر</button>
+{#                      <button class="btn btn-primary btn-sm" type="submit">ارسال نظر</button>#}
+                        {% else %}
+                         <div class="alert alert-warning">
+                        <a href="{% url 'login_page' %}">برای درج نظر حتما باید وارد سایت شوید</a>
+                        </div>
+                        {% endif %}
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}
