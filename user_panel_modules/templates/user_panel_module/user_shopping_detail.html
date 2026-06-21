@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load poll_extras %}
+{% load  render_partial %}
+{% block page_title %}
+لیست سفارشات
+{% endblock %}
+
+{% block page_content %}
+
+<div class="page-title-overlap bg-dark pt-4">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+          <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                <li class="breadcrumb-item"><a class="text-nowrap" href="index-2.html"><i class="ci-home"></i>خانه</a></li>
+                <li class="breadcrumb-item text-nowrap"><a href="#">حساب کاربری</a>
+                </li>
+                <li class="breadcrumb-item text-nowrap active" aria-current="page">تاریخچه سفارشات</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 text-light mb-0">سفارشات من</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container pb-5 mb-2 mb-md-4">
+        <div class="row">
+          <!-- Sidebar-->
+            {% render_partial 'user_panel_modules.views.user_panel_menu_component' %}          <!-- Content  -->
+
+          <!-- Content  -->
+          <section class="col-lg-8">
+            <!-- Toolbar-->
+            <div class="d-flex justify-content-between align-items-center pt-lg-2 pb-4 pb-lg-5 mb-lg-3">
+              <div class="d-flex align-items-center">
+                <label class="d-none d-lg-block fs-sm text-light text-nowrap opacity-75 me-2" for="order-sort">مرتب سازی:</label>
+                <label class="d-lg-none fs-sm text-nowrap opacity-75 me-2" for="order-sort">مرتب سازی:</label>
+                <select class="form-select" id="order-sort">
+                  <option>همه </option>
+                  <option>تحویل داده شده</option>
+                 <option>درحال پردازش</option>
+                  <option>تاخیر</option>
+                  <option>کنسل</option>
+                </select>
+              </div><a class="btn btn-primary btn-sm d-none d-lg-inline-block" href="account-signin.html"><i class="ci-sign-out me-2"></i>خروج</a>
+            </div>
+            <!-- Orders list-->
+            <div class="table-responsive fs-md mb-4">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                  <th>شناسه</th>
+                  <th>محصول</th>
+                  <th>تعداد</th>
+                  <th>قیمت نهایی</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% if order.orderdetails_set.exists %}
+                {% for detail in order.orderdetails_set.all %}
+
+                  <tr>
+                    <td class="py-3">{{ detail.id }}</td>
+                    <td class="py-3">{{ detail.product.title }} </td>
+                    <td class="py-3"><span class="badge bg-info m-0">{{ detail.count}}</span></td>
+                    <td class="py-3">{{ detail.final_price }}</td>
+
+                  </tr>
+                {% endfor %}
+                {% else %}
+                      <tr>
+                 <td colspan="4" class="text-center">هیچ جزئیاتی برای این سفارش وجود ندارد.</td>
+                    </tr>
+                {% endif %}
+
+                </tbody>
+              </table>
+            </div>
+            <!-- Pagination-->
+            <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#"><i class="ci-arrow-left me-2"></i>قبلی</a></li>
+              </ul>
+              <ul class="pagination">
+                <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
+                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(جاری)</span></span></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
+              </ul>
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#" aria-label="Next">بعدی<i class="ci-arrow-right ms-2"></i></a></li>
+              </ul>
+            </nav>
+          </section>
+        </div>
+{% endblock %}
+

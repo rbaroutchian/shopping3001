@@ -47,7 +47,13 @@ INSTALLED_APPS = [
     'django_jalali',
     'user_panel_modules.apps.UserPanelModulesConfig',
     'django_render_partial',
+<<<<<<< HEAD
     'order_modules'
+=======
+    'order_modules',
+    'site_modules',
+    'home_modules'
+>>>>>>> 5107b08e96b2770cf93d2fcf969926b520381a67
 ]
 
 MIDDLEWARE = [

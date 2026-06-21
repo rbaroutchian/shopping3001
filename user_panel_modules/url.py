@@ -10,4 +10,11 @@ urlpatterns= [
     path('remove-order-detail', views.remove_order_detail, name='remove-order-detail'),
     path('change-order-detail', views.change_order_details_count, name='change_order_details_count'),
 
+<<<<<<< HEAD
+=======
+    path('my-shopping', views.MyShopping.as_view(), name='user_shopping_page'),
+    path('my-shopping-detail/<int:order_id>', views.my_shopping_detail, name='user_shopping_detail_page'),
+
+
+>>>>>>> 5107b08e96b2770cf93d2fcf969926b520381a67
 ]
