@@ -1,0 +1,34 @@
+{% load static %}
+{% load poll_extras %}
+        <!-- comment-->
+{% for comment in comments %}
+	
+
+
+              <div class="d-flex align-items-start py-4 border-bottom" id="single_comment_box_{{ comment.id }}">
+                  <img class="rounded-circle" src="{% static 'img/testimonials/04.jpg' %}" width="50" alt="مایکل دیویس">
+                <div class="ps-3">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="fs-md mb-0">{{ comment.user.username}}</h6>
+                      <a class="nav-link-style fs-sm fw-medium" href="#" onclick="fillParentId({{ comment.id }})">
+                      <i class="ci-reply me-2"></i>پاسخ</a>
+                  </div>
+                  <p class="fs-md mb-1">{{ comment.text }}</p><span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>{{ comment.create_date|show_jalali_date }}</span>
+
+
+                    <!-- comment reply-->
+                    {% for sub_comment in comment.articlecomment_set.all %}
+                  <div class="d-flex align-items-start border-top pt-4 mt-4" id="single_comment_box_{{ sub_comment.id }}">
+                      <img class="rounded-circle" src="{% static 'img/testimonials/03.jpg' %}" width="50" alt="مایکل دیویس">
+                    <div class="ps-3">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fs-md mb-0">{{ sub_comment.user.username }}</h6>
+                      </div>
+                      <p class="fs-md mb-1">{{ sub_comment.text }}</p><span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>{{ comment.create_date|show_jalali_date }}</span>
+                    </div>
+                  </div>
+                    {% endfor %}
+
+                </div>
+              </div>
+{% endfor %}

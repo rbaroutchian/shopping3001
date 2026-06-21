@@ -1,0 +1,16 @@
+{% load static %}
+
+            <article class="blog-list border-bottom pb-4 mb-5">
+              <div class="blog-start-column">
+                <div class="d-flex align-items-center fs-sm pb-2 mb-1"><a class="blog-entry-meta-link" href="{{ article.get_absolute_url  }}">
+                    <div class="blog-entry-author-ava"><img src="{{ article.image.url}}" alt="رافائل مارکز"></div>رافائل مارکز</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">25 تیر</a></div>
+                <h2 class="h5 blog-entry-title"><a href="{{ article.get_absolute_url  }}">{{ article.title}}</a></h2>
+              </div>
+              <div class="blog-end-column"><a class="blog-entry-thumb mb-3" href="{{ article.get_absolute_url  }}"><img src="{{ article.image.url}}" alt="Post"></a>
+                <div class="d-flex justify-content-between mb-1">
+                  <div class="fs-sm text-muted pe-2 mb-2">در<a  href='#' class='blog-entry-meta-link'>سفر</a>, <a href='#' class='blog-entry-meta-link'>مد</a></div>
+                  <div class="fs-sm mb-2"><a class="blog-entry-meta-link text-nowrap" href="blog-single-sidebar.html#comments"><i class="ci-message"></i>19</a></div>
+                </div>
+                <p class="fs-sm">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد <a href='blog-single-sidebar.html' class='blog-entry-meta-link fw-medium'>[بیشتر]</a></p>
+              </div>
+            </article>
